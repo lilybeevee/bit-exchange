@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "bitexchange:block/bit_converter" }
+    "facing=north": { "model": "bitexchange:block/bit_converter" },
+    "facing=east": { "model": "bitexchange:block/bit_converter", "y": 90 },
+    "facing=south": { "model": "bitexchange:block/bit_converter", "y": 180 },
+    "facing=west": { "model": "bitexchange:block/bit_converter", "y": 270 }
   }
 }

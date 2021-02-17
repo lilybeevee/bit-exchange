@@ -1,6 +1,8 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube_bottom_top",
   "textures": {
-    "all": "bitexchange:block/bit_factory"
+    "top": "bitexchange:block/bit_factory_top",
+    "side": "bitexchange:block/bit_factory_side",
+    "bottom": "bitexchange:block/bit_factory_bottom"
   }
 }
