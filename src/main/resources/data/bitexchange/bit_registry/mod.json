@@ -3,5 +3,10 @@
     "id": "bitexchange:bit",
     "value": 1,
     "research": 8
+  },
+  {
+    "id": "bitexchange:byte",
+    "value": 8,
+    "research": 64
   }
 ]

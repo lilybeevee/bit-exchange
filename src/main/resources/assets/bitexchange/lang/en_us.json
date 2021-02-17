@@ -3,6 +3,8 @@
   "block.bitexchange.bit_researcher": "Bit Researcher",
   "block.bitexchange.bit_factory": "Bit Factory",
   "block.bitexchange.bit_miner": "Bit Miner",
+  "block.bitexchange.byte_miner": "Byte Miner",
   "item.bitexchange.bit_array": "Bit Array",
-  "item.bitexchange.bit": "Bit"
+  "item.bitexchange.bit": "Bit",
+  "item.bitexchange.byte": "Byte"
 }
