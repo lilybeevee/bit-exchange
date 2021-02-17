@@ -5,15 +5,19 @@ import moe.lilybeevee.bitexchange.api.BitInfo;
 import moe.lilybeevee.bitexchange.api.BitRegistry;
 import moe.lilybeevee.bitexchange.block.BitConverterBlock;
 import moe.lilybeevee.bitexchange.block.BitFactoryBlock;
+import moe.lilybeevee.bitexchange.block.BitMinerBlock;
 import moe.lilybeevee.bitexchange.block.BitResearcherBlock;
 import moe.lilybeevee.bitexchange.block.entity.BitConverterBlockEntity;
 import moe.lilybeevee.bitexchange.block.entity.BitFactoryBlockEntity;
+import moe.lilybeevee.bitexchange.block.entity.BitMinerBlockEntity;
 import moe.lilybeevee.bitexchange.block.entity.BitResearcherBlockEntity;
+import moe.lilybeevee.bitexchange.client.gui.BitMinerScreen;
 import moe.lilybeevee.bitexchange.item.BitArrayItem;
 import moe.lilybeevee.bitexchange.registrybuilder.RecipeRegistryBuilder;
 import moe.lilybeevee.bitexchange.registrybuilder.DataRegistryBuilder;
 import moe.lilybeevee.bitexchange.screen.BitConverterScreenHandler;
 import moe.lilybeevee.bitexchange.screen.BitFactoryScreenHandler;
+import moe.lilybeevee.bitexchange.screen.BitMinerScreenHandler;
 import moe.lilybeevee.bitexchange.screen.BitResearcherScreenHandler;
 import net.fabricmc.api.ModInitializer;
 
@@ -57,15 +61,19 @@ public class BitExchange implements ModInitializer {
     public static final Block BIT_CONVERTER_BLOCK;
     public static final Block BIT_RESEARCHER_BLOCK;
     public static final Block BIT_FACTORY_BLOCK;
+    public static final Block BIT_MINER_BLOCK;
     public static final BlockItem BIT_CONVERTER_BLOCK_ITEM;
     public static final BlockItem BIT_RESEARCHER_BLOCK_ITEM;
     public static final BlockItem BIT_FACTORY_BLOCK_ITEM;
+    public static final BlockItem BIT_MINER_BLOCK_ITEM;
     public static final BlockEntityType<BitConverterBlockEntity> BIT_CONVERTER_BLOCK_ENTITY;
     public static final BlockEntityType<BitResearcherBlockEntity> BIT_RESEARCHER_BLOCK_ENTITY;
     public static final BlockEntityType<BitFactoryBlockEntity> BIT_FACTORY_BLOCK_ENTITY;
+    public static final BlockEntityType<BitMinerBlockEntity> BIT_MINER_BLOCK_ENTITY;
     public static final ScreenHandlerType<BitConverterScreenHandler> BIT_CONVERTER_SCREEN_HANDLER;
     public static final ScreenHandlerType<BitResearcherScreenHandler> BIT_RESEARCHER_SCREEN_HANDLER;
     public static final ScreenHandlerType<BitFactoryScreenHandler> BIT_FACTORY_SCREEN_HANDLER;
+    public static final ScreenHandlerType<BitMinerScreenHandler> BIT_MINER_SCREEN_HANDLER;
 
     static {
         BIT_ARRAY_ITEM = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bit_array"), new BitArrayItem(new FabricItemSettings().group(ItemGroup.MISC)));
@@ -74,18 +82,22 @@ public class BitExchange implements ModInitializer {
         BIT_CONVERTER_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "bit_converter"), new BitConverterBlock(FabricBlockSettings.of(Material.WOOL).strength(1.0f)));
         BIT_RESEARCHER_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "bit_researcher"), new BitResearcherBlock(FabricBlockSettings.of(Material.WOOL).strength(1.0f)));
         BIT_FACTORY_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "bit_factory"), new BitFactoryBlock(FabricBlockSettings.of(Material.WOOL).strength(1.0f)));
+        BIT_MINER_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "bit_miner"), new BitMinerBlock(BIT_ITEM, 20, FabricBlockSettings.of(Material.WOOL).strength(1.0f)));
 
         BIT_CONVERTER_BLOCK_ITEM = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bit_converter"), new BlockItem(BIT_CONVERTER_BLOCK, new FabricItemSettings().group(ItemGroup.MISC)));
         BIT_RESEARCHER_BLOCK_ITEM = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bit_researcher"), new BlockItem(BIT_RESEARCHER_BLOCK, new FabricItemSettings().group(ItemGroup.MISC)));
         BIT_FACTORY_BLOCK_ITEM = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bit_factory"), new BlockItem(BIT_FACTORY_BLOCK, new FabricItemSettings().group(ItemGroup.MISC)));
+        BIT_MINER_BLOCK_ITEM = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bit_miner"), new BlockItem(BIT_MINER_BLOCK, new FabricItemSettings().group(ItemGroup.MISC)));
 
         BIT_CONVERTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "bit_converter"), BlockEntityType.Builder.create(BitConverterBlockEntity::new, BIT_CONVERTER_BLOCK).build(null));
         BIT_RESEARCHER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "bit_researcher"), BlockEntityType.Builder.create(BitResearcherBlockEntity::new, BIT_RESEARCHER_BLOCK).build(null));
         BIT_FACTORY_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "bit_factory"), BlockEntityType.Builder.create(BitFactoryBlockEntity::new, BIT_FACTORY_BLOCK).build(null));
+        BIT_MINER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "bit_miner"), BlockEntityType.Builder.create(BitMinerBlockEntity::new, BIT_MINER_BLOCK).build(null));
 
         BIT_CONVERTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier(MOD_ID, "bit_converter"), BitConverterScreenHandler::new);
         BIT_RESEARCHER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier(MOD_ID, "bit_researcher"), BitResearcherScreenHandler::new);
         BIT_FACTORY_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier(MOD_ID, "bit_factory"), BitFactoryScreenHandler::new);
+        BIT_MINER_SCREEN_HANDLER = ScreenHandlerRegistry.registerExtended(new Identifier(MOD_ID, "bit_miner"), BitMinerScreenHandler::new);
 
         BitRegistry.registerBuilder(new DataRegistryBuilder());
         BitRegistry.registerBuilder(new RecipeRegistryBuilder());

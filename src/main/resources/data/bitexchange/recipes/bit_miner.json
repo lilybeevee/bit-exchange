@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SBS",
+    "BPB",
+    "SBS"
+  ],
+  "key": {
+    "B": {
+      "item": "bitexchange:bit"
+    },
+    "P": {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "bitexchange:bit_miner",
+    "count": 1
+  }
+}

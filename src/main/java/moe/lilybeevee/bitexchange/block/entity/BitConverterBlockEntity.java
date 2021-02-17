@@ -92,6 +92,7 @@ public class BitConverterBlockEntity extends BlockEntity implements NamedScreenH
                 Pair<ItemStack, Long> converted = BitHelper.convertToBits(input, storageItem.getMaxBits(storage) - storageItem.getBits(storage));
 
                 this.inventory.set(0, storageItem.addBits(storage, converted.getRight()));
+                this.markDirty();
                 return converted.getLeft();
             }
         }

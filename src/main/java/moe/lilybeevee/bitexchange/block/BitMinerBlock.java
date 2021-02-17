@@ -1,5 +1,6 @@
 package moe.lilybeevee.bitexchange.block;
 
+import moe.lilybeevee.bitexchange.block.entity.BitMinerBlockEntity;
 import moe.lilybeevee.bitexchange.block.entity.BitResearcherBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -8,6 +9,7 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -25,15 +27,20 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class BitResearcherBlock extends BlockWithEntity {
-    public BitResearcherBlock(Settings settings) {
+public class BitMinerBlock extends BlockWithEntity {
+    public Item output;
+    public int speed;
+
+    public BitMinerBlock(Item output, int speed, Settings settings) {
         super(settings);
+        this.output = output;
+        this.speed = speed;
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockView world) {
-        return new BitResearcherBlockEntity();
+        return new BitMinerBlockEntity();
     }
 
     @Override
@@ -42,29 +49,15 @@ public class BitResearcherBlock extends BlockWithEntity {
     }
 
     @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof BitResearcherBlockEntity) {
-            ((BitResearcherBlockEntity)blockEntity).owner = placer.getUuid();
-        }
-    }
-
-    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
-            BitResearcherBlockEntity blockEntity = (BitResearcherBlockEntity)world.getBlockEntity(pos);
+            //This will call the createScreenHandlerFactory method from BlockWithEntity, which will return our blockEntity casted to
+            //a namedScreenHandlerFactory. If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
+            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
 
-            if (player.getUuid().equals(blockEntity.owner)) {
-                //This will call the createScreenHandlerFactory method from BlockWithEntity, which will return our blockEntity casted to
-                //a namedScreenHandlerFactory. If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
-                NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-
-                if (screenHandlerFactory != null) {
-                    //With this call the server will request the client to open the appropriate Screenhandler
-                    player.openHandledScreen(screenHandlerFactory);
-                }
-            } else {
-                player.sendMessage(new LiteralText("This Bit Researcher is not yours"), true);
+            if (screenHandlerFactory != null) {
+                //With this call the server will request the client to open the appropriate Screenhandler
+                player.openHandledScreen(screenHandlerFactory);
             }
         }
 
@@ -75,8 +68,8 @@ public class BitResearcherBlock extends BlockWithEntity {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof BitResearcherBlockEntity) {
-                ItemScatterer.spawn(world, pos, (BitResearcherBlockEntity)blockEntity);
+            if (blockEntity instanceof BitMinerBlockEntity) {
+                ItemScatterer.spawn(world, pos, (BitMinerBlockEntity)blockEntity);
                 // update comparators
                 world.updateComparators(pos,this);
             }

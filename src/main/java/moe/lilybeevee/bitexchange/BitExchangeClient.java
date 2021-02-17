@@ -4,6 +4,7 @@ import moe.lilybeevee.bitexchange.api.BitRegistry;
 import moe.lilybeevee.bitexchange.api.BitStorageItem;
 import moe.lilybeevee.bitexchange.client.gui.BitConverterScreen;
 import moe.lilybeevee.bitexchange.client.gui.BitFactoryScreen;
+import moe.lilybeevee.bitexchange.client.gui.BitMinerScreen;
 import moe.lilybeevee.bitexchange.client.gui.BitResearcherScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -24,6 +25,8 @@ public class BitExchangeClient implements ClientModInitializer {
         ScreenRegistry.register(BitExchange.BIT_CONVERTER_SCREEN_HANDLER, BitConverterScreen::new);
         ScreenRegistry.register(BitExchange.BIT_RESEARCHER_SCREEN_HANDLER, BitResearcherScreen::new);
         ScreenRegistry.register(BitExchange.BIT_FACTORY_SCREEN_HANDLER, BitFactoryScreen::new);
+        ScreenRegistry.register(BitExchange.BIT_MINER_SCREEN_HANDLER, BitMinerScreen::new);
+
 
         ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
             if (MinecraftClient.getInstance() == null) {
