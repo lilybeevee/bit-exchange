@@ -2,12 +2,14 @@ package moe.lilybeevee.bitexchange.api;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonSyntaxException;
+import moe.lilybeevee.bitexchange.BitExchange;
 import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tag.ServerTagManagerHolder;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.apache.logging.log4j.Level;
 
 import java.util.*;
 
@@ -31,6 +33,7 @@ public class BitRegistry {
                 LIST.add(info);
             }
         }
+        BitExchange.log(Level.INFO, "Built " + LIST.size() + " bit values");
     }
 
     public static void add(String id, BitInfo info) {
