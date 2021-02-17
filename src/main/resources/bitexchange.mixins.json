@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "moe.lilybeevee.bitexchange.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MinecraftServerMixin",
+    "IngredientMixin",
+    "SmithingRecipeMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

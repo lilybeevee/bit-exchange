@@ -1,0 +1,37 @@
+[
+  {
+    "ids": [
+      "minecraft:netherrack",
+      "minecraft:crimson_nylium",
+      "minecraft:warped_nylium"
+    ],
+    "value": 1,
+    "research": 16
+  },
+  {
+    "id": "minecraft:glowstone_dust",
+    "value": 384,
+    "research": 16
+  },
+  {
+    "ids": [
+      "minecraft:soul_sand",
+      "minecraft:soul_soil"
+    ],
+    "value": 4,
+    "research": 16
+  },
+  {
+    "ids": [
+      "minecraft:basalt",
+      "minecraft:blackstone"
+    ],
+    "value": 4,
+    "research": 16
+  },
+  {
+    "id": "minecraft:crying_obsidian",
+    "value": 768,
+    "research": 8
+  }
+]

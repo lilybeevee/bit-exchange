@@ -1,0 +1,22 @@
+[
+  {
+    "id": "minecraft:stone",
+    "value": 1,
+    "research": 16,
+    "resource": false
+  },
+  {
+    "ids": [
+      "minecraft:granite",
+      "minecraft:diorite",
+      "minecraft:andesite"
+    ],
+    "value": 1,
+    "research": 16
+  },
+  {
+    "id": "minecraft:gravel",
+    "value": 4,
+    "research": 16
+  }
+]

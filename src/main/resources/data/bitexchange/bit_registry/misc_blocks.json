@@ -1,0 +1,26 @@
+[
+  {
+    "id": "minecraft:cobblestone",
+    "value": 1,
+    "research": 16
+  },
+  {
+    "id": "minecraft:obsidian",
+    "value": 64,
+    "research": 8
+  },
+  {
+    "ids": [
+      "minecraft:melon",
+      "minecraft:pumpkin"
+    ],
+    "value": 144,
+    "research": 8
+  },
+  {
+    "id": "minecraft:carved_pumpkin",
+    "value": 144,
+    "research": 8,
+    "resource": false
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "bitexchange",
+  "version": "${version}",
+  "name": "Bit Exchange",
+  "description": "Convert items to bits, and bits to items",
+  "authors": [
+    "lilybeevee"
+  ],
+  "contributors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/bitexchange/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "moe.lilybeevee.bitexchange.BitExchange"
+    ],
+    "client": [
+      "moe.lilybeevee.bitexchange.BitExchangeClient"
+    ],
+    "server": [],
+    "cardinal-components": [
+      "moe.lilybeevee.bitexchange.BitComponents"
+    ]
+  },
+  "mixins": [
+    "bitexchange.mixins.json"
+  ],
+  "custom": {
+    "cardinal-components": [
+      "bitexchange:knowledge"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.11.1",
+    "fabric": "*"
+  }
+}
