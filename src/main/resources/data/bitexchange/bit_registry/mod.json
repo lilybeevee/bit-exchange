@@ -8,5 +8,10 @@
     "id": "bitexchange:byte",
     "value": 8,
     "research": 64
+  },
+  {
+    "id": "bitexchange:kilobit",
+    "value": 64,
+    "research": 64
   }
 ]

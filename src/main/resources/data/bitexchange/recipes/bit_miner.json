@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SBS",
-    "BPB",
-    "SBS"
+    "PBP",
+    "BRB",
+    "PBP"
   ],
   "key": {
     "B": {
       "item": "bitexchange:bit"
     },
     "P": {
-      "item": "minecraft:diamond_pickaxe"
+      "item": "minecraft:iron_pickaxe"
     },
-    "S": {
-      "item": "minecraft:stone"
+    "R": {
+      "item": "minecraft:redstone"
     }
   },
   "result": {

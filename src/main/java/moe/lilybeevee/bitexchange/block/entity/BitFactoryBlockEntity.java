@@ -94,7 +94,7 @@ public class BitFactoryBlockEntity extends BlockEntity implements NamedScreenHan
 
     public boolean createOutput(Item item) {
         ItemStack stack = item.getDefaultStack();
-        for (int i = 3; i <= 12; i++) {
+        for (int i = 3; i < 12; i++) {
             ItemStack slot = this.inventory.get(i);
             if (slot.isEmpty()) {
                 this.inventory.set(i, stack);
