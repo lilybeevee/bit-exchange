@@ -1,5 +1,6 @@
 package moe.lilybeevee.bitexchange;
 
+import me.shedaniel.autoconfig.AutoConfig;
 import moe.lilybeevee.bitexchange.api.BitRegistry;
 import moe.lilybeevee.bitexchange.api.BitStorageItem;
 import moe.lilybeevee.bitexchange.client.gui.BitConverterScreen;
@@ -34,27 +35,41 @@ public class BitExchangeClient implements ClientModInitializer {
             }
             Item item = stack.getItem();
             if (item instanceof BitStorageItem) {
-                BitStorageItem bitStorage = (BitStorageItem)item;
+                BitStorageItem bitStorage = (BitStorageItem) item;
                 String countText = String.valueOf(bitStorage.getBits(stack));
                 if (bitStorage.displayMaxBits(stack)) {
                     countText += " / " + bitStorage.getMaxBits(stack);
                 }
-                lines.add(new LiteralText("Bits: ").formatted(Formatting.LIGHT_PURPLE).append(new LiteralText(countText).formatted(Formatting.YELLOW)));
-            } else if (BitRegistry.get(item) > 0) {
+                lines.add(new LiteralText("Stored: ").formatted(Formatting.LIGHT_PURPLE).append(new LiteralText(countText).formatted(Formatting.WHITE)));
+            }
+            if (BitRegistry.get(item) > 0) {
                 Screen screen = MinecraftClient.getInstance().currentScreen;
                 boolean bitScreen = (screen instanceof BitConverterScreen) ||
                                     (screen instanceof BitResearcherScreen) ||
                                     (screen instanceof BitFactoryScreen);
+                BitConfig config = AutoConfig.getConfigHolder(BitConfig.class).getConfig();
                 int research = BitComponents.KNOWLEDGE.get(MinecraftClient.getInstance().player).getKnowledge(item);
                 int maxResearch = BitRegistry.getResearch(item);
-                MutableText text = new LiteralText("Bits: ").formatted(Formatting.LIGHT_PURPLE).append(new LiteralText(String.valueOf(BitRegistry.get(item))).formatted(Formatting.YELLOW));
-                lines.add(text);
-                if (Screen.hasShiftDown() || bitScreen) {
-                    text.append(new LiteralText(" [" + research + "/" + maxResearch + "]").formatted((research < maxResearch) ? Formatting.DARK_GRAY : Formatting.DARK_PURPLE));
-                    text.append(new LiteralText(" [R]").formatted(BitRegistry.isResource(item) ? Formatting.GREEN : Formatting.RED));
-                    if (stack.getCount() > 1) {
-                        lines.add(new LiteralText("Stack: ").formatted(Formatting.LIGHT_PURPLE).append(new LiteralText(String.valueOf(BitRegistry.get(item) * stack.getCount())).formatted(Formatting.YELLOW)));
+                if ((research >= maxResearch || config.showUnlearnedValues) && (!(item instanceof BitStorageItem) || Screen.hasShiftDown())) {
+                    MutableText text = new LiteralText("Bits: ").formatted(Formatting.LIGHT_PURPLE).append(new LiteralText(String.valueOf(BitRegistry.get(item))).formatted(Formatting.YELLOW));
+                    if (config.showUnlearnedValues) {
+                        text.append(new LiteralText(" [" + research + "/" + maxResearch + "]").formatted((research < maxResearch) ? Formatting.DARK_GRAY : Formatting.DARK_PURPLE));
                     }
+                    lines.add(text);
+                    if (Screen.hasShiftDown() || bitScreen) {
+                        if (stack.getCount() > 1) {
+                            lines.add(new LiteralText("- Stack: ").formatted(Formatting.LIGHT_PURPLE).append(new LiteralText(String.valueOf(BitRegistry.get(item) * stack.getCount())).formatted(Formatting.YELLOW)));
+                        }
+                        if (BitRegistry.isResource(item)) {
+                            lines.add(new LiteralText("- ").formatted(Formatting.LIGHT_PURPLE).append(new LiteralText("Automatable").formatted(Formatting.DARK_PURPLE)));
+                        }
+                    }
+                } else if (research < maxResearch) {
+                    MutableText text = new LiteralText("Unlearned").formatted(Formatting.DARK_PURPLE);
+                    if (Screen.hasShiftDown() || bitScreen) {
+                        text.append(new LiteralText(" [" + research + "/" + maxResearch + "]").formatted(Formatting.DARK_GRAY));
+                    }
+                    lines.add(text);
                 }
             }
         });

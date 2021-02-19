@@ -3,12 +3,15 @@ package moe.lilybeevee.bitexchange.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import moe.lilybeevee.bitexchange.BitExchange;
 import moe.lilybeevee.bitexchange.screen.BitConverterScreenHandler;
+import moe.lilybeevee.bitexchange.screen.slot.SlotInput;
+import moe.lilybeevee.bitexchange.screen.slot.SlotStorage;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
@@ -86,6 +89,7 @@ public class BitConverterScreen extends HandledScreen<ScreenHandler> {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        drawRedSlots(matrices, x, y);
         int k = (int)(71.0F * scrollAmount);
         drawTexture(matrices, x + 156, y + 8 + k, 176 + (shouldScroll() ? 0 : 12), 0, 12, 15);
         searchBox.render(matrices, mouseX, mouseY, delta);
@@ -193,6 +197,46 @@ public class BitConverterScreen extends HandledScreen<ScreenHandler> {
             searchBox.setSelectionEnd(searchBox.getText().length());
         }
         super.onMouseClick(slot, invSlot, clickData, actionType);
+    }
+
+    private void drawRedSlots(MatrixStack matrices, int x, int y) {
+        if (!client.player.inventory.getCursorStack().isEmpty()) {
+            drawRedSlotsForStack(matrices, x, y, client.player.inventory.getCursorStack());
+        } else if (focusedSlot != null) {
+            if (focusedSlot.inventory == playerInventory && !focusedSlot.getStack().isEmpty()) {
+                drawRedSlotsForStack(matrices, x, y, focusedSlot.getStack());
+            } else {
+                for (int i = 0; i < 2; i++) {
+                    if (focusedSlot == handler.slots.get(i)) {
+                        int start = BitConverterScreenHandler.PLAYER_SLOT;
+                        for (int j = start; j < handler.slots.size(); j++) {
+                            ItemStack stack = handler.slots.get(j).getStack();
+                            if (!stack.isEmpty() && !handler.slots.get(i).canInsert(stack)) {
+                                drawRedSlot(matrices, x, y, handler.slots.get(j));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void drawRedSlotsForStack(MatrixStack matrices, int x, int y, ItemStack stack) {
+        for (int i = 0; i < 2; i++) {
+            if (!handler.slots.get(i).canInsert(stack)) {
+                drawRedSlot(matrices, x, y, handler.slots.get(i));
+            }
+        }
+    }
+
+    private void drawRedSlot(MatrixStack matrices, int x, int y, Slot slot) {
+        if (slot instanceof SlotInput) {
+            drawTexture(matrices, x + slot.x - 1, y + slot.y - 1, backgroundWidth + 32, 15, 18, 18);
+        } else if (slot instanceof SlotStorage) {
+            drawTexture(matrices, x + slot.x, y + slot.y , backgroundWidth + 16, 15, 16, 16);
+        } else {
+            drawTexture(matrices, x + slot.x, y + slot.y, backgroundWidth, 15, 16, 16);
+        }
     }
 
     public void updateBitText() {

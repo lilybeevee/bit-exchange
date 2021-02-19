@@ -64,9 +64,6 @@ public class RecipeRegistryBuilder implements BitRegistryBuilder {
 
     private double processItem(Item item) {
         try {
-            if (item instanceof BitStorageItem) {
-                return 0;
-            }
             long bits = BitRegistry.get(item);
             if (bits > 0) {
                 return bits;

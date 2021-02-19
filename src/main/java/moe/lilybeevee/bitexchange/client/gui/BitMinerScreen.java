@@ -24,7 +24,7 @@ public class BitMinerScreen extends HandledScreen<ScreenHandler> {
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
         int p = (int)Math.floor(((double)getHandler().getMiningProgress() / getHandler().getMiningSpeed()) * 13);
-        drawTexture(matrices, x + 62, y + 36 + (13 - p), 1, backgroundHeight + 1 + (13 - p), 52, p);
+        drawTexture(matrices, x + 62, y + 36 + (13 - p), 0, backgroundHeight + (13 - p), 52, p);
     }
 
     private BitMinerScreenHandler getHandler() {

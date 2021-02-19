@@ -1,6 +1,8 @@
 package moe.lilybeevee.bitexchange;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import moe.lilybeevee.bitexchange.api.BitInfo;
 import moe.lilybeevee.bitexchange.api.BitRegistry;
 import moe.lilybeevee.bitexchange.block.BitConverterBlock;
@@ -118,6 +120,8 @@ public class BitExchange implements ModInitializer {
     @Override
     public void onInitialize() {
         log(Level.INFO, "Initializing");
+
+        AutoConfig.register(BitConfig.class, GsonConfigSerializer::new);
 
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
             @Override

@@ -17,6 +17,7 @@ import net.minecraft.screen.slot.Slot;
 import org.apache.logging.log4j.Level;
 
 public class BitFactoryScreenHandler extends ScreenHandler {
+    public static final int PLAYER_SLOT = 12;
     private final Inventory inventory;
 
     //This constructor gets called on the client when the server wants it to open the screenHandler,
@@ -42,7 +43,7 @@ public class BitFactoryScreenHandler extends ScreenHandler {
         //Our inventory
         this.addSlot(new SlotStorage(inventory, 0, 8, 17));
         this.addSlot(new SlotResource(inventory, 1, 62, 17, playerInventory));
-        this.addSlot(new SlotInput(inventory, 2, 9, 52));
+        this.addSlot(new SlotInput(inventory, 2, 9, 52, playerInventory));
         for (m = 0; m < 3; ++m) {
             for (l = 0; l < 3; ++l) {
                 this.addSlot(new SlotOutput(inventory, 3 + l + m * 3, 116 + l * 18, 17 + m * 18));

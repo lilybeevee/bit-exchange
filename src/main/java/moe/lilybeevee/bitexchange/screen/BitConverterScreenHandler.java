@@ -22,8 +22,8 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.List;
 
 public class BitConverterScreenHandler extends ScreenHandler {
-    private static final int CONVERSION_SLOT = 2;
-    private static final int PLAYER_SLOT = 34;
+    public static final int CONVERSION_SLOT = 2;
+    public static final int PLAYER_SLOT = 34;
     private final BitConverterInventory inventory;
     private final PlayerEntity player;
     public final DefaultedList<ItemStack> itemList = DefaultedList.of();
@@ -52,7 +52,7 @@ public class BitConverterScreenHandler extends ScreenHandler {
         int l;
         //Server-side bit converter slots
         this.addSlot(new SlotStorage(inventory, 0, 8, 104));
-        this.addSlot(new SlotInput(inventory, 1, 152, 104));
+        this.addSlot(new SlotInput(inventory, 1, 152, 104, playerInventory));
         //Bit conversion inventory
         for (m = 0; m < 4; ++m) {
             for (l = 0; l < 8; ++l) {
