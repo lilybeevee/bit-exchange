@@ -3,6 +3,7 @@
     "ids": [
       "minecraft:dirt",
       "minecraft:grass_block",
+      "minecraft:grass_path",
       "minecraft:podzol",
       "minecraft:mycelium"
     ],
@@ -30,7 +31,10 @@
   {
     "ids": [
       "minecraft:red_mushroom",
-      "minecraft:brown_mushroom"
+      "minecraft:brown_mushroom",
+      "minecraft:brown_mushroom_block",
+      "minecraft:red_mushroom_block",
+      "minecraft:mushroom_stem"
     ],
     "value": 32,
     "research": 8

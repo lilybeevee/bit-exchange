@@ -22,5 +22,15 @@
     "value": 144,
     "research": 8,
     "resource": false
+  },
+  {
+    "id": "minecraft:cobweb",
+    "value": 12,
+    "research": 16
+  },
+  {
+    "id": "minecraft:bell",
+    "value_ref": "minecraft:gold_ingot*7",
+    "research": 4
   }
 ]

@@ -38,7 +38,7 @@ public class RecipeRegistryBuilder implements BitRegistryBuilder {
     @Override
     public void build(MinecraftServer server) {
         for (RecipeType recipeType : Registry.RECIPE_TYPE) {
-            processRecipeType(server, recipeType);
+            mapRecipes(server, recipeType);
         }
         for (Item item : recipeMap.keySet()) {
             processItem(item);
@@ -48,7 +48,7 @@ public class RecipeRegistryBuilder implements BitRegistryBuilder {
         recipeMap.clear();
     }
 
-    private void processRecipeType(MinecraftServer server, RecipeType recipeType) {
+    private void mapRecipes(MinecraftServer server, RecipeType recipeType) {
         List<Recipe> list = server.getRecipeManager().listAllOfType(recipeType);
         for (Recipe recipe : list) {
             Item item = recipe.getOutput().getItem();

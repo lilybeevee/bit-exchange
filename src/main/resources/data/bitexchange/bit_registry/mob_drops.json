@@ -90,13 +90,28 @@
     "research": 16
   },
   {
+    "id": "minecraft:phantom_membrane",
+    "value": 192,
+    "research": 16
+  },
+  {
     "id": "minecraft:ender_pearl",
+    "value": 1024,
+    "research": 8
+  },
+  {
+    "id": "minecraft:nautilus_shell",
     "value": 1024,
     "research": 8
   },
   {
     "id": "minecraft:blaze_rod",
     "value": 1536,
+    "research": 8
+  },
+  {
+    "id": "minecraft:shulker_shell",
+    "value": 2048,
     "research": 8
   },
   {
@@ -108,5 +123,29 @@
     "id": "minecraft:nether_star",
     "value": 131072,
     "research": 4
+  },
+  {
+    "id": "minecraft:totem_of_undying",
+    "value": 131072,
+    "research": 4
+  },
+  {
+    "id": "minecraft:dragon_egg",
+    "value": 262144,
+    "research": 1
+  },
+  {
+    "ids": [
+      "minecraft:skeleton_skull",
+      "minecraft:zombie_head",
+      "minecraft:creeper_head"
+    ],
+    "value": 256,
+    "research": 4
+  },
+  {
+    "id": "minecraft:trident",
+    "value": 16384,
+    "research": 2
   }
 ]

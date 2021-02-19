@@ -38,6 +38,8 @@ import net.minecraft.item.*;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
@@ -45,6 +47,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 // literal("foo")
@@ -54,6 +57,7 @@ import static net.minecraft.server.command.CommandManager.argument;
 
 public class BitExchange implements ModInitializer {
     public static Logger LOGGER = LogManager.getLogger();
+    private static HashSet<Item> tested = new HashSet<>();
 
     public static final String MOD_ID = "bitexchange";
     public static final String MOD_NAME = "Bit Exchange";
@@ -171,6 +175,22 @@ public class BitExchange implements ModInitializer {
                             return 1;
                         })
                     )
+                ).then(literal("test")
+                    .executes((ctx) -> {
+                        ctx.getSource().getPlayer().sendMessage(new LiteralText("Unregistered:").formatted(Formatting.DARK_PURPLE), false);
+                        int count = 0;
+                        for (Item item : Registry.ITEM) {
+                            if (BitRegistry.getInfo(item) == null && !tested.contains(item)) {
+                                ctx.getSource().getPlayer().sendMessage(item.getDefaultStack().toHoverableText(), false);
+                                tested.add(item);
+                                count++;
+                            }
+                            if (count == 10) {
+                                break;
+                            }
+                        }
+                        return 1;
+                    })
                 )
             );
         });

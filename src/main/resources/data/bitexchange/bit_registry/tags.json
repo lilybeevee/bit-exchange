@@ -42,5 +42,11 @@
     "id": "#minecraft:small_flowers",
     "value": 16,
     "research": 8
+  },
+  {
+    "override": false,
+    "id": "#minecraft:music_discs",
+    "value": 2048,
+    "research": 2
   }
 ]
