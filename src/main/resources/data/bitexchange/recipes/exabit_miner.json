@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "MMM",
-    "MGM",
+    "MNM",
     "MMM"
   ],
   "key": {
     "M": {
-      "item": "bitexchange:bit_miner"
+      "item": "bitexchange:petabit_miner"
     },
-    "G": {
-      "item": "minecraft:glowstone_dust"
+    "N": {
+      "item": "minecraft:nether_star"
     }
   },
   "result": {
-    "item": "bitexchange:byte_miner",
+    "item": "bitexchange:exabit_miner",
     "count": 1
   }
 }

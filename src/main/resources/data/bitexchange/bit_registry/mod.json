@@ -13,5 +13,30 @@
     "id": "bitexchange:kilobit",
     "value": 64,
     "research": 64
+  },
+  {
+    "id": "bitexchange:megabit",
+    "value": 512,
+    "research": 64
+  },
+  {
+    "id": "bitexchange:gigabit",
+    "value": 4096,
+    "research": 64
+  },
+  {
+    "id": "bitexchange:terabit",
+    "value": 32768,
+    "research": 64
+  },
+  {
+    "id": "bitexchange:petabit",
+    "value": 262144,
+    "research": 64
+  },
+  {
+    "id": "bitexchange:exabit",
+    "value": 2097152,
+    "research": 64
   }
 ]

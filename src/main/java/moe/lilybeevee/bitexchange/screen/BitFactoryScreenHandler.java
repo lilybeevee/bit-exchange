@@ -96,7 +96,6 @@ public class BitFactoryScreenHandler extends ScreenHandler {
                     return ItemStack.EMPTY;
                 }
             } else if (this.slots.get(1).getStack().isEmpty() && this.slots.get(1).canInsert(originalStack)) {
-                BitExchange.log(Level.INFO, "aaaaa");
                 ItemStack insertStack = originalStack.copy();
                 insertStack.setCount(1);
                 this.slots.get(1).setStack(insertStack);

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SGS",
+    "SIS",
     "PBP",
-    "SGS"
+    "SIS"
   ],
   "key": {
     "B": {
@@ -12,11 +12,11 @@
     "P": {
       "item": "minecraft:iron_pickaxe"
     },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
     "S": {
       "item": "minecraft:stone"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
     }
   },
   "result": {

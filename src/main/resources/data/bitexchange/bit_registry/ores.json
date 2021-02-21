@@ -30,13 +30,13 @@
     "research": 16
   },
   {
-    "id": "minecraft:diamond",
-    "value": 8192,
+    "id": "minecraft:emerald",
+    "value": 4096,
     "research": 8
   },
   {
-    "id": "minecraft:emerald",
-    "value": 16384,
+    "id": "minecraft:diamond",
+    "value": 8192,
     "research": 8
   },
   {
